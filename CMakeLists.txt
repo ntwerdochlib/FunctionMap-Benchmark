@@ -3,6 +3,8 @@ project(fnmapbm)
 
 set(CMAKE_BUILD_TYPE "RelWithDebInfo")
 
+include("cmake/base.cmake")
+
 # set compiler flags
 if((CMAKE_CXX_COMPILER_ID MATCHES GNU) OR (CMAKE_CXX_COMPILER_ID MATCHES Clang))
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -flto -DNDEBUG -O3")
@@ -23,12 +25,9 @@ if(NOT benchmark_POPULATED)
 	add_subdirectory(${benchmark_SOURCE_DIR} ${benchmark_BINARY_DIR})
 endif()                                     
 
-include("cmake/detail/target_destination.cmake")
 if (LINUX)
-	include("cmake/detail/select_gcc_runtime.cmake")
 	select_gcc_runtime(STATIC)
 elseif (WIN32)
-	include("cmake/detail/select_msvc_runtime.cmake")
 	select_msvc_runtime(STATIC)
 endif()
 

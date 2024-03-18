@@ -1,0 +1,67 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "base",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "RelWithDebInfo"
+            }
+        },
+        {
+            "name": "vs-windows",
+            "inherits": [
+                "base"
+            ],
+            "displayName": "Windows x64",
+            "generator": "Visual Studio 17 2022",
+            "architecture": "x64",
+            "environment": {},
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "windows",
+            "inherits": [
+                "base"
+            ],
+            "displayName": "Windows Tests",
+            "generator": "Ninja",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "linux-ninja",
+            "inherits": [
+                "base"
+            ],
+            "displayName": "Linux Tests",
+            "generator": "Ninja",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "linux",
+            "inherits": [
+                "base"
+            ],
+            "displayName": "Linux Tests",
+            "generator": "Unix Make Files",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        }
+    ]
+}
