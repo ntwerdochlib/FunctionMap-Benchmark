@@ -18,7 +18,7 @@ using std::map;
 using std::string;
 using std::vector;
 
-static constexpr std::array<char*, 81> actions{
+static constexpr std::array<const char*, 81> actions{
 	"CreateSDCustGatewaySession",
 	"IsCustomerPlatformSupported",
 	"CreateSDCustConference",
