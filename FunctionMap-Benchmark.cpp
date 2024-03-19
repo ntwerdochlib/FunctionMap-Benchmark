@@ -290,7 +290,8 @@ static void ProcessMessage(benchmark::State& state)
 	}
 }
 
-BENCHMARK(ProcessMessage);
+BENCHMARK(ProcessMessage)
+	->Repetitions(100);
 
 using func_map_t = map<string, string>;
 func_map_t functionsMap;
@@ -314,7 +315,9 @@ static void ProcessMessageMap(benchmark::State& state)
 	}
 }
 
-BENCHMARK(ProcessMessageMap)->Setup(ProcessMessageMap_Setup);
+BENCHMARK(ProcessMessageMap)
+	->Setup(ProcessMessageMap_Setup)
+	->Repetitions(100);
 
 using func_umap_t = std::unordered_map<string, string>;
 func_umap_t functionsUMap;
@@ -340,6 +343,7 @@ static void ProcessMessageUMap(benchmark::State& state)
 
 BENCHMARK(ProcessMessageUMap)
 	->Name("ProcessMessageUnorderedMap")
-	->Setup(ProcessMessageUMap_Setup);
+	->Setup(ProcessMessageUMap_Setup)
+	->Repetitions(100);
 
 BENCHMARK_MAIN();
